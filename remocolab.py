@@ -162,10 +162,10 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, mount_gdrive_t
   root_password = secrets.token_urlsafe()
   user_password = secrets.token_urlsafe()
   user_name = "colab"
-  msg += "✂️"*24 + "\n"
+  msg += "👀"*24 + "\n"
   msg += f"root password: {root_password}\n"
   msg += f"{user_name} password: {user_password}\n"
-  msg += "✂️"*24 + "\n"
+  msg += "👀"*24 + "\n"
   subprocess.run(["useradd", "-s", "/bin/bash", "-m", user_name])
   subprocess.run(["adduser", user_name, "sudo"], check = True)
   subprocess.run(["chpasswd"], input = f"root:{root_password}", universal_newlines = True)
@@ -223,14 +223,14 @@ def _setupSSHDImpl(public_key, tunnel, ngrok_token, ngrok_region, mount_gdrive_t
   msg += "---\n"
   if is_VNC:
     msg += "Execute following command on your local machine and login before running TurboVNC viewer:\n"
-    msg += "✂️"*24 + "\n"
+    msg += "👀"*24 + "\n"
     msg += f"remote desktop {ssh_tunnel1} \n"
     msg += f"ssh {ssh_common_options} -L 5901:localhost:5901 {user_name}@{hostname}\n"
   else:
     msg += "Command to connect to the ssh server:\n"
-    msg += "✂️"*24 + "\n"
+    msg += "👀"*24 + "\n"
     msg += f"ssh {ssh_common_options} {user_name}@{hostname}\n"
-    msg += "✂️"*24 + "\n"
+    msg += "👀"*24 + "\n"
   return msg
 
 def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, mount_gdrive_to, mount_gdrive_from, is_VNC):
@@ -260,13 +260,13 @@ def _setupSSHDMain(public_key, tunnel, ngrok_region, check_gpu_available, mount_
   ngrok_token = None
 
   if tunnel == "ngrok":
-    print("Copy&paste your tunnel authtoken from https://dashboard.ngrok.com/auth")
-    print("(You need to sign up for ngrok and login,)")
+    print("Sao chép và dán authtoken ở trang wed https://dashboard.ngrok.com/auth")
+    print("(Bạn phải đăng nhập mới có mã authtoken,)")
     #Set your ngrok Authtoken.
     ngrok_token = getpass.getpass()
 
     if not ngrok_region:
-      print("Select your ngrok region:")
+      print("Chọn vùng cho vps của bạn:")
       print("us - United States (Ohio)")
       print("eu - Europe (Frankfurt)")
       print("ap - Asia/Pacific (Singapore)")
@@ -377,10 +377,10 @@ import subprocess, secrets, pathlib
 
 vnc_passwd = secrets.token_urlsafe()[:8]
 vnc_viewonly_passwd = secrets.token_urlsafe()[:8]
-print("✂️"*24)
+print("👀"*24)
 print("VNC password: {}".format(vnc_passwd))
 print("VNC view only password: {}".format(vnc_viewonly_passwd))
-print("✂️"*24)
+print("👀"*24)
 vncpasswd_input = "{0}\\n{1}".format(vnc_passwd, vnc_viewonly_passwd)
 vnc_user_dir = pathlib.Path.home().joinpath(".vnc")
 vnc_user_dir.mkdir(exist_ok=True)
